@@ -1,0 +1,12 @@
+.stud-login-container {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stud-login-card {
+  display: grid;
+  grid-template-columns: 0.3fr;
+  align-content: center;
+  justify-content: center;
+}

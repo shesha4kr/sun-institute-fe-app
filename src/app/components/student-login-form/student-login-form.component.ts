@@ -1,15 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'student-login-form',
   templateUrl: './student-login-form.component.html',
-  styleUrls: ['./student-login-form.component.css']
+  styleUrls: ['./student-login-form.component.css'],
 })
 export class StudentLoginFormComponent implements OnInit {
+  studLoginForm = new FormGroup({
+    studId: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+  });
 
-  constructor() { }
+  constructor(private _snackBar: MatSnackBar) {}
 
-  ngOnInit(): void {
+  loginStudent() {
+    const { studId, password } = this.studLoginForm.value;
   }
 
+  openSnackBar(message: string) {
+    this._snackBar.open(message, 'Retry');
+  }
+
+  ngOnInit(): void {}
 }
