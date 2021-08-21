@@ -1,1 +1,33 @@
-<p>admin-login-form works!</p>
+<mat-card class="admin-login-container" [ngStyle]="{ 'margin-top': '50px' }">
+  <mat-list>
+    <mat-list-item>
+      Welcome To Sun Institute Portal! Login if you are an Admin
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>
+
+  <form
+    [formGroup]="adminLoginForm"
+    (ngSubmit)="loginAdmin()"
+    class="admin-login-card"
+    [ngStyle]="{ 'margin-top': '30px' }"
+  >
+    <mat-form-field appearance="fill">
+      <mat-label>Enter admin id</mat-label>
+      <input matInput #input formControlName="adminId" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Enter password</mat-label>
+      <input matInput type="password" formControlName="password" />
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      [color]="authFailed ? 'warn' : 'primary'"
+      [disabled]="!adminLoginForm.valid"
+    >
+      Login
+    </button>
+  </form>
+</mat-card>

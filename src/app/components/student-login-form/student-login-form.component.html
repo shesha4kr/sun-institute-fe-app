@@ -24,7 +24,11 @@
       <input matInput type="password" formControlName="password" />
     </mat-form-field>
 
-    <button mat-raised-button color="primary" [disabled]="!studLoginForm.valid">
+    <button
+      mat-raised-button
+      [color]="authFailed ? 'warn' : 'primary'"
+      [disabled]="!studLoginForm.valid"
+    >
       Login
     </button>
   </form>

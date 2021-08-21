@@ -8,6 +8,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./student-login-form.component.css'],
 })
 export class StudentLoginFormComponent implements OnInit {
+  authFailed = false;
+
   studLoginForm = new FormGroup({
     studId: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
@@ -17,6 +19,8 @@ export class StudentLoginFormComponent implements OnInit {
 
   loginStudent() {
     const { studId, password } = this.studLoginForm.value;
+
+    this.authFailed = true;
   }
 
   openSnackBar(message: string) {
