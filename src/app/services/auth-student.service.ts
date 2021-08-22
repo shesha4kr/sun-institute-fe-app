@@ -24,8 +24,7 @@ export class AuthStudentService {
 
   updateLocalStorage() {
     if(this.authDetails.valid) {
-      console.log("Inside If of Service");
-      
+          
         localStorage.setItem('isLoggedIn', 'yes');
         localStorage.setItem('userType', 'student');
         localStorage.setItem('totalStuds', this.authDetails?.totalStudents);
@@ -36,9 +35,7 @@ export class AuthStudentService {
         localStorage.setItem('mockTest', this.authDetails?.latestTestDetails.mockTest);
         localStorage.setItem('dateOfExam', this.authDetails?.latestTestDetails.dateOfExam);
         this.router.navigate(['/student']);
-    } else {
-      console.log('Inside If of Service');
-        localStorage.setItem('isLoggedIn', 'no');
+
     }
   }
 }
