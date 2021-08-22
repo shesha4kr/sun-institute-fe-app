@@ -25,19 +25,19 @@ export class StudentLoginFormComponent implements OnInit {
 
   loginStudent() {
     const { userName, password } = this.studLoginForm.value;
-    console.log("Logged In Value before service call:"+localStorage.getItem('isLoggedIn'));
-    console.log("Logged In Value before service call:"+localStorage.getItem('isLoggedIn'));
-    
+    console.log('VALUE0:' + localStorage.getItem('isLoggedIn'));
+
     this.authStudentService.authenticateStudent(userName, password);
 
-    console.log("Logged In Value after service call:"+localStorage.getItem('isLoggedIn'));
+    setTimeout(()=>{
+      console.log('VALUE3:' + localStorage.getItem('isLoggedIn'));
 
+      this.authFailed = localStorage.length > 0 ? false : true;
 
-    this.authFailed =
-      localStorage.getItem('isLoggedIn') === 'yes' ? true : false;
+      // Open snack bar if authFailed is true
+      this.authFailed && this.openSnackBar('Login Failed! Incorrect Credentials');
+    },1000);
 
-    // Open snack bar if authFailed is true
-    this.authFailed && this.openSnackBar('Login Failed! Incorrect Credentials');
   }
 
   openSnackBar(message: string) {
