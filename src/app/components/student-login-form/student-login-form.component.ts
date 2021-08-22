@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthStudentService } from 'src/app/services/auth-student.service';
 
 @Component({
   selector: 'student-login-form',
@@ -11,16 +12,21 @@ export class StudentLoginFormComponent implements OnInit {
   authFailed = false;
 
   studLoginForm = new FormGroup({
-    studId: new FormControl('', Validators.required),
+    userName: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
 
-  constructor(private _snackBar: MatSnackBar) {}
+  constructor(
+    private _snackBar: MatSnackBar,
+    private authStudentService: AuthStudentService
+  ) {}
 
   loginStudent() {
-    const { studId, password } = this.studLoginForm.value;
+    const { userName, password } = this.studLoginForm.value;
+    this.authStudentService.authenticateStudent(userName, password);
 
-    this.authFailed = true;
+    this.authFailed = localStorage.getItem('isLoggedIn') === 'true' ? false : true;
+    this.authFailed && this.openSnackBar('Login Failed! Incorrect Credentials');
   }
 
   openSnackBar(message: string) {

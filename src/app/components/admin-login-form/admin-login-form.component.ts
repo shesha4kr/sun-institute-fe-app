@@ -21,7 +21,7 @@ export class AdminLoginFormComponent implements OnInit {
       //load admin module
     } else {
       this.authFailed = true;
-      this.openSnackBar('Login Failed! Credentials are incorrect');
+      this.openSnackBar('Login Failed! Incorrect Credentials');
     }
   }
 
