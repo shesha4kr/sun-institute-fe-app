@@ -14,6 +14,16 @@ import { Observable } from 'rxjs';
 export class LoginGuard implements CanActivate {
   constructor(private router: Router) {}
   canActivate() {
-    return true;
+    if (!localStorage.getItem('isLoggedIn') || localStorage.getItem('isLoggedIn') === 'no') {
+      return true;
+    }
+
+    if (localStorage.getItem('userType') === 'admin') {
+      this.router.navigate(['/admin']);
+      return false;
+    } else {
+      this.router.navigate(['/student']);
+      return false;
+    }
   }
 }

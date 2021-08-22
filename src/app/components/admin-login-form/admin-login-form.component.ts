@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'admin-login-form',
@@ -8,6 +9,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./admin-login-form.component.css'],
 })
 export class AdminLoginFormComponent implements OnInit {
+  constructor(private _snackBar: MatSnackBar, private router: Router) {}
+
   authFailed = false;
 
   adminLoginForm = new FormGroup({
@@ -17,15 +20,16 @@ export class AdminLoginFormComponent implements OnInit {
 
   loginAdmin() {
     const { adminId, password } = this.adminLoginForm.value;
+
     if (adminId === 'admin' && password === 'admin') {
-      //load admin module
+      localStorage.setItem('userType', 'admin');
+      localStorage.setItem('isLoggedIn', 'yes');
+      this.router.navigate(['/admin']);
     } else {
       this.authFailed = true;
       this.openSnackBar('Login Failed! Incorrect Credentials');
     }
   }
-
-  constructor(private _snackBar: MatSnackBar) {}
 
   openSnackBar(message: string) {
     this._snackBar.open(message, 'Retry');
