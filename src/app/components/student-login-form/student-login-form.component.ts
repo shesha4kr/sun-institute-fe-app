@@ -25,12 +25,10 @@ export class StudentLoginFormComponent implements OnInit {
 
   loginStudent() {
     const { userName, password } = this.studLoginForm.value;
-    console.log('VALUE0:' + localStorage.getItem('isLoggedIn'));
 
     this.authStudentService.authenticateStudent(userName, password);
 
     setTimeout(()=>{
-      console.log('VALUE3:' + localStorage.getItem('isLoggedIn'));
 
       this.authFailed = localStorage.length > 0 ? false : true;
 

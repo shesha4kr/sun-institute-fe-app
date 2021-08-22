@@ -24,9 +24,7 @@ export class AuthStudentService {
 
   updateLocalStorage() {
     if(this.authDetails.valid) {
-    console.log('VALUE1:' + localStorage.getItem('isLoggedIn'));
-      
-      
+          
         localStorage.setItem('isLoggedIn', 'yes');
         localStorage.setItem('userType', 'student');
         localStorage.setItem('totalStuds', this.authDetails?.totalStudents);
@@ -37,7 +35,6 @@ export class AuthStudentService {
         localStorage.setItem('mockTest', this.authDetails?.latestTestDetails.mockTest);
         localStorage.setItem('dateOfExam', this.authDetails?.latestTestDetails.dateOfExam);
         this.router.navigate(['/student']);
-    console.log('VALUE2:' + localStorage.getItem('isLoggedIn'));
 
     }
   }
