@@ -1,0 +1,38 @@
+<mat-card class="card-style" style="text-align: center">
+  <mat-card-title style="text-align: center">
+    {{ title }}
+  </mat-card-title>
+
+  <mat-card-content>
+    <div class="latest-exam-container">
+      <div class="exam details">
+        <mat-list>
+          <mat-list-item
+            [ngStyle]="{ 'font-weight': 'bold', 'font-size': '1.3rem' }"
+          >
+            Your Performance for Mock Exam {{ latestExamDetails.mockTest }}
+          </mat-list-item>
+          <mat-list-item [ngStyle]="{ 'font-weight': 'bold' }">
+            Held On {{ latestExamDetails.dateOfExam }}
+          </mat-list-item>
+          <mat-list-item>
+            Logical : {{ latestExamDetails.logicalMarks }}/100
+          </mat-list-item>
+          <mat-list-item>
+            Quantative : {{ latestExamDetails.quantMarks }}/100
+          </mat-list-item>
+          <mat-list-item>
+            General Knowledge : {{ latestExamDetails.gkMarks }}/100
+          </mat-list-item>
+        </mat-list>
+      </div>
+
+      <div class="progress-chart">
+        <circle-chart [radius]="radius"></circle-chart>
+      </div>
+    </div>
+    <button mat-raised-button color="primary" style="justify-self: center">
+      View All Mock Tests
+    </button>
+  </mat-card-content>
+</mat-card>
