@@ -25,15 +25,21 @@ export class AuthStudentService {
   updateLocalStorage() {
     if(this.authDetails.valid) {
           
+        //Info needed to restrict user from navigating in application without login
         localStorage.setItem('isLoggedIn', 'yes');
         localStorage.setItem('userType', 'student');
+
+        //Extra Info from BE
         localStorage.setItem('totalStuds', this.authDetails?.totalStudents);
         localStorage.setItem('totalStudsBehind', this.authDetails?.totalStudentsBehind);
-        localStorage.setItem('logicalMarks', this.authDetails?.latestTestDetails.logicalMarks);
-        localStorage.setItem('quantMarks', this.authDetails?.latestTestDetails.quantMarks);
-        localStorage.setItem('gkMarks', this.authDetails?.latestTestDetails.gkMarks);
-        localStorage.setItem('mockTest', this.authDetails?.latestTestDetails.mockTest);
-        localStorage.setItem('dateOfExam', this.authDetails?.latestTestDetails.dateOfExam);
+
+        //Latest Mock Exam Details
+        localStorage.setItem('latestExamDetails', JSON.stringify(this.authDetails?.latestTestDetails));
+
+        //Student Details
+        localStorage.setItem('studDetails', JSON.stringify(this.authDetails?.studDetails));
+        
+        //Load and Navigate to Student Module
         this.router.navigate(['/student']);
 
     }
