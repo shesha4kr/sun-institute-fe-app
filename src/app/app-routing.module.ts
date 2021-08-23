@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginPageComponent } from './components/login-page/login-page.component';
 import { LoginGuard } from './guards/login.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { StudentGuard } from './guards/student.guard';
+import { LoginPageComponent } from './component/login-page/login-page.component';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent, canActivate: [LoginGuard] },
