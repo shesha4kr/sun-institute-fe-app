@@ -1,27 +1,20 @@
-<mat-card class="stud-login-container" [ngStyle]="{ 'margin-top': '50px' }">
-  <!-- Form Header -->
+<mat-card class="admin-login-container" [ngStyle]="{ 'margin-top': '50px' }">
   <mat-list>
     <mat-list-item>
-      Welcome To Sun Institute Portal! Login if you are a Student
+      Welcome To Sun Institute Portal! Login if you are an Admin
     </mat-list-item>
     <mat-divider></mat-divider>
   </mat-list>
 
-  <!-- Student Form -->
   <form
-    [formGroup]="studLoginForm"
-    (ngSubmit)="loginStudent()"
-    class="stud-login-card"
+    [formGroup]="adminLoginForm"
+    (ngSubmit)="loginAdmin()"
+    class="admin-login-card"
     [ngStyle]="{ 'margin-top': '30px' }"
   >
     <mat-form-field appearance="fill">
-      <mat-label>Enter user name</mat-label>
-      <input
-        matInput
-        #input
-        placeholder="Ex. ST-Fff-Lll-781997"
-        formControlName="userName"
-      />
+      <mat-label>Enter admin id</mat-label>
+      <input matInput #input formControlName="adminId" />
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -32,7 +25,7 @@
     <button
       mat-raised-button
       [color]="authFailed ? 'warn' : 'primary'"
-      [disabled]="!studLoginForm.valid"
+      [disabled]="!adminLoginForm.valid"
     >
       Login
     </button>

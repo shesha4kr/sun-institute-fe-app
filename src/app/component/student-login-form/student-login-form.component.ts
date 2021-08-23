@@ -28,14 +28,13 @@ export class StudentLoginFormComponent implements OnInit {
 
     this.authStudentService.authenticateStudent(userName, password);
 
-    setTimeout(()=>{
-
+    setTimeout(() => {
       this.authFailed = localStorage.length > 0 ? false : true;
 
       // Open snack bar if authFailed is true
-      this.authFailed && this.openSnackBar('Login Failed! Incorrect Credentials');
-    },1000);
-
+      this.authFailed &&
+        this.openSnackBar('Login Failed! Incorrect Credentials');
+    }, 1000);
   }
 
   openSnackBar(message: string) {
