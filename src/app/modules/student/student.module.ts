@@ -10,9 +10,10 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { StudentRoutingModule } from './student-routing.module';
 import { StudentComponent } from './student.component';
 import { ComponentModule } from 'src/app/component/component.module';
+import { ExamSummaryComponent } from './pages/exam-summary/exam-summary.component';
 
 @NgModule({
-  declarations: [StudentComponent],
+  declarations: [StudentComponent, ExamSummaryComponent],
   imports: [
     CommonModule,
     ComponentModule,

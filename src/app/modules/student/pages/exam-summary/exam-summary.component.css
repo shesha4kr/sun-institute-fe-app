@@ -1,0 +1,10 @@
+.exams-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.delete-this {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 0px;
+}

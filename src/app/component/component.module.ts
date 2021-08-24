@@ -18,6 +18,8 @@ import { AdminLoginFormComponent } from './admin-login-form/admin-login-form.com
 import { StudentLoginFormComponent } from './student-login-form/student-login-form.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SummaryExamComponent } from './summary-exam/summary-exam.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AdminLoginFormComponent,
     StudentLoginFormComponent,
     LoginPageComponent,
+    SummaryExamComponent,
   ],
   imports: [
     CommonModule,
@@ -40,6 +43,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    RouterModule,
   ],
   exports: [
     DetailExamComponent,
@@ -47,6 +51,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AdminLoginFormComponent,
     StudentLoginFormComponent,
     LoginPageComponent,
+    SummaryExamComponent,
   ],
 })
 export class ComponentModule {}

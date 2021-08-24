@@ -1,0 +1,21 @@
+<mat-card class="card-style">
+  <mat-card-title style="text-align: center">
+    <a href="#">{{ title }}</a>
+  </mat-card-title>
+
+  <mat-card-content class="summary-container">
+    <div>
+      <mat-list>
+        <mat-list-item> All India Test ({{ mockTest }}) </mat-list-item>
+        <mat-list-item> Held On {{ dateOfExam }} </mat-list-item>
+        <mat-list-item>
+          Total Percentage: {{ percentage | percent }}
+        </mat-list-item>
+      </mat-list>
+    </div>
+
+    <div>
+      <circle-chart [radius]="radius"></circle-chart>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -24,14 +24,23 @@
           <mat-list-item>
             General Knowledge : {{ latestExamDetails.gkMarks }}/100
           </mat-list-item>
+          <mat-list-item>
+            Total Percentage : {{ totalPercentage | percent }}
+          </mat-list-item>
         </mat-list>
       </div>
 
-      <div class="progress-chart">
+      <div class="progress-chart" style="margin-top: 50px">
         <circle-chart [radius]="radius"></circle-chart>
       </div>
     </div>
-    <button mat-raised-button color="primary" style="justify-self: center">
+    <button
+      mat-raised-button
+      color="primary"
+      style="justify-self: center"
+      [routerLink] = "['/student', 'exams']"
+      [queryParams] = "{userName: studDetails.userName}"
+    >
       View All Mock Tests
     </button>
   </mat-card-content>
