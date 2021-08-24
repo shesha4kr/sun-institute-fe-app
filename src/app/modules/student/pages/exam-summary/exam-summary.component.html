@@ -1,0 +1,8 @@
+<mat-card style="text-align: center">
+  <mat-card-title> All Your Attended Exams </mat-card-title>
+</mat-card>
+
+<div *ngFor="let exam of exams; odd as odd; even as even" class="delete-this">
+  <summary-exam [exam]="exam"> </summary-exam>
+  <summary-exam [exam]="exam"> </summary-exam>
+</div>

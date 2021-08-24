@@ -9,9 +9,16 @@ export class DetailExamComponent implements OnInit {
   @Input() studDetails: any;
   @Input() latestExamDetails: any;
   @Input() title = 'Default Title';
+  totalPercentage = 100;
   radius = 90;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.totalPercentage =
+      (this.latestExamDetails.logicalMarks +
+        this.latestExamDetails.quantMarks +
+        this.latestExamDetails.gkMarks) /
+      300;
+  }
 }
