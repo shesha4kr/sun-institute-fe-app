@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SharedService } from './services/shared.service';
 
 @Component({
   selector: 'app-root',
@@ -6,9 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  isDarkMode = false;
+  constructor(private _sharedService: SharedService) {}
 
-  switchDarkMode() {
-    this.isDarkMode = !this.isDarkMode;
+  currentModule = 'Login';
+  isDarkMode = 'false';
+
+  ngOnInit() {
+    this._sharedService.changeEmitted$.subscribe((data) => {
+      this.currentModule = data;
+    });
+  }
+
+  getDarkMode(data: string) {
+    this.isDarkMode = data;
   }
 }
