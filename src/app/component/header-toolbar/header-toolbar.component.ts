@@ -7,7 +7,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./header-toolbar.component.css'],
 })
 export class HeaderToolbarComponent {
-  @Input() currentModule = 'login';
+  private _currentModule = 'Login';
+
+  @Input()
+  set currentModule(value: string) {
+    this._currentModule = value;
+    this.getMenuItem();
+  }
+
+  get currentModule() {
+    return this._currentModule;
+  }
+
   @Output() isDarkMode: EventEmitter<string> = new EventEmitter();
   darkMode = 'false';
   menuItems: string[] = [];
@@ -52,7 +63,7 @@ export class HeaderToolbarComponent {
   constructor(private router: Router) {}
 
   //Whenever the value of this.currentModule change, it will get called
-  ngOnChanges() {
-    this.getMenuItem();
-  }
+  // ngOnChanges() {
+  //   this.getMenuItem();
+  // }
 }
