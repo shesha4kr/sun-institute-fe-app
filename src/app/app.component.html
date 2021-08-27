@@ -1,14 +1,5 @@
-<div [ngClass]="isDarkMode ? 'apply-dark-theme' : 'light-theme'">
-  <!-- Header Toolbar -->
-  <mat-toolbar color="primary">
-    <span>Sun Institute Student Portal</span>
-    <span class="toolbar-spacer"></span>
-
-    <!-- Slider To switch between Dark Mode -->
-    <mat-slide-toggle (click)="switchDarkMode()">
-      <span class="material-icons">dark_mode</span>
-    </mat-slide-toggle>
-  </mat-toolbar>
+<div [ngClass]="isDarkMode === 'true' ? 'apply-dark-theme' : 'light-theme'">
+  <header-toolbar [currentModule]="currentModule" (isDarkMode)="getDarkMode($event)"></header-toolbar>
 
   <router-outlet></router-outlet>
 </div>

@@ -12,6 +12,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { CircleChartComponent } from './circle-chart/circle-chart.component';
 import { AdminLoginFormComponent } from './admin-login-form/admin-login-form.component';
@@ -20,6 +23,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SummaryExamComponent } from './summary-exam/summary-exam.component';
 import { RouterModule } from '@angular/router';
+import { HeaderToolbarComponent } from './header-toolbar/header-toolbar.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,7 @@ import { RouterModule } from '@angular/router';
     StudentLoginFormComponent,
     LoginPageComponent,
     SummaryExamComponent,
+    HeaderToolbarComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +49,9 @@ import { RouterModule } from '@angular/router';
     MatFormFieldModule,
     ReactiveFormsModule,
     RouterModule,
+    MatIconModule,
+    MatMenuModule,
+    MatToolbarModule,
   ],
   exports: [
     DetailExamComponent,
@@ -52,6 +60,7 @@ import { RouterModule } from '@angular/router';
     StudentLoginFormComponent,
     LoginPageComponent,
     SummaryExamComponent,
+    HeaderToolbarComponent,
   ],
 })
 export class ComponentModule {}
