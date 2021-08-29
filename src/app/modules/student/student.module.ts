@@ -10,9 +10,10 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { StudentRoutingModule } from './student-routing.module';
 import { StudentComponent } from './student.component';
 import { ComponentModule } from 'src/app/component/component.module';
+import { EditProfilePageComponent } from './pages/edit-profile-page/edit-profile-page.component';
 
 @NgModule({
-  declarations: [StudentComponent],
+  declarations: [StudentComponent, EditProfilePageComponent],
   imports: [
     CommonModule,
     ComponentModule,

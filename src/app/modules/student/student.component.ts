@@ -8,9 +8,11 @@ import { SharedService } from 'src/app/services/shared.service';
   styleUrls: ['./student.component.css'],
 })
 export class StudentComponent implements OnInit {
-  studDetails: any;
-  latestExamDetails: any;
+  studName = 'First Second';
+  studId = 0;
   viewAll = false;
+  examsToDisplay: any;
+  latestExamDetails$: any;
   allExamDetails$: any;
 
   constructor(
@@ -23,39 +25,36 @@ export class StudentComponent implements OnInit {
 
   ngOnInit(): void {
     //Fetch Necessary Items from LocalStorage
-    this.studDetails = JSON.parse(localStorage.getItem('studDetails')!);
-    this.latestExamDetails = JSON.parse(
-      localStorage.getItem('latestExamDetails')!
-    );
+    this.studName = localStorage.getItem('userName')!;
+    this.studId = parseInt(localStorage.getItem('userId')!);
 
-    this.latestExamDetails.totalStudents = localStorage.getItem('totalStuds');
-    this.latestExamDetails.totalStudBehind =
-      localStorage.getItem('totalStudsBehind');
-    this.allExamDetails$ = [this.latestExamDetails];
+    //Fetch Latest Exam Details
+    this.fetchExamsService.fetchLatestExamsByUserId(this.studId).subscribe(
+      (response) => {
+        this.latestExamDetails$ = response;
+        this.examsToDisplay = this.latestExamDetails$;
+      },
+      (error) => {}
+    );
   }
 
   handleClick() {
     this.viewAll = !this.viewAll;
 
-    //Fetch All Exam Details if User Clicked on View All
-    this.viewAll &&
-      this.fetchExamsService
-        .getAllExams(this.studDetails.userName)
-        .subscribe((response: any) => {
-          console.log(response);
+    //Fetch All Exam Details if value of this.allExamDetails$ is NULL
+    this.allExamDetails$ ||
+      this.fetchExamsService.fetchAllExams(this.studId).subscribe(
+        (response) => {
           this.allExamDetails$ = response;
-        });
+          this.examsToDisplay = this.allExamDetails$;
+        },
+        (error) => {}
+      );
 
     if (this.viewAll) {
-      this.fetchExamsService
-        .getAllExams(this.studDetails.userName)
-        .subscribe((response: any) => {
-          console.log(response);
-          this.allExamDetails$ = response;
-        });
+      this.examsToDisplay = this.allExamDetails$;
     } else {
-      this.allExamDetails$ = [];
-      this.allExamDetails$.push(this.latestExamDetails);
+      this.examsToDisplay = this.latestExamDetails$;
     }
   }
 }

@@ -1,15 +1,11 @@
 <mat-card style="text-align: center">
   <mat-card-title>
-    Welcome! {{ studDetails.firstName }} to the Student Portal
+    Welcome! {{ studName }} to the Student Portal
   </mat-card-title>
 </mat-card>
 
-<div *ngFor="let exam of allExamDetails$">
-  <detail-exam
-    [latestExamDetails]="exam"
-    title="Welcome! {{ studDetails.firstName }} to the Student Portal"
-  >
-  </detail-exam>
+<div *ngFor="let exam of examsToDisplay">
+  <detail-exam [examDetails]="exam"> </detail-exam>
 </div>
 
 <div *ngIf="!viewAll">
