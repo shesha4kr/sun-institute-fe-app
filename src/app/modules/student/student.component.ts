@@ -27,6 +27,10 @@ export class StudentComponent implements OnInit {
     this.latestExamDetails = JSON.parse(
       localStorage.getItem('latestExamDetails')!
     );
+
+    this.latestExamDetails.totalStudents = localStorage.getItem('totalStuds');
+    this.latestExamDetails.totalStudBehind =
+      localStorage.getItem('totalStudsBehind');
     this.allExamDetails$ = [this.latestExamDetails];
   }
 
