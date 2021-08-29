@@ -19,6 +19,8 @@ export class StudentLoginFormComponent implements OnInit {
   //Member Variables
   authDetails$: any;
 
+  disable = true;
+
   studLoginForm = new FormGroup({
     userName: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
@@ -39,32 +41,15 @@ export class StudentLoginFormComponent implements OnInit {
   }
 
   handleResponse() {
-    console.log('DETAILS:' + this.authDetails$);
     if (this.authDetails$.valid) {
       //Info needed to restrict user from navigating in application without login
       localStorage.setItem('userType', 'student');
-
-      //Extra Info from BE
-      localStorage.setItem('totalStuds', this.authDetails$?.totalStudents);
-      localStorage.setItem(
-        'totalStudsBehind',
-        this.authDetails$?.totalStudentsBehind
-      );
-
-      //Latest Mock Exam Details
-      localStorage.setItem(
-        'latestExamDetails',
-        JSON.stringify(this.authDetails$?.latestTestDetails)
-      );
-
-      //Student Details
-      localStorage.setItem(
-        'studDetails',
-        JSON.stringify(this.authDetails$?.studDetails)
-      );
+      localStorage.setItem('userName', this.authDetails$?.userName);
+      localStorage.setItem('userId', this.authDetails$?.studId);
 
       //Load and Navigate to Student Module
       this.router.navigate(['/student']);
+      console.log('test');
     } else {
       this.openSnackBar('Login Failed! Incorrect Credentials');
     }

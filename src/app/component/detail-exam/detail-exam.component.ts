@@ -7,7 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DetailExamComponent implements OnInit {
   @Input() latestExamDetails: any;
-  @Input() title = 'Default Title';
   totalPercentage = 100;
   percentageForCircleChart = 110;
 

@@ -57,6 +57,10 @@ export class HeaderToolbarComponent {
     if (menuItem === 'Logout') {
       localStorage.clear();
       this.router.navigate(['/']);
+    } else if (menuItem === 'Edit Profile') {
+      console.log('Edit Profile Clicked');
+
+      this.router.navigate(['/student', 'profile']);
     }
   }
 
