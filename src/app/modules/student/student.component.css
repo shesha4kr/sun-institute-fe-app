@@ -1,14 +1,5 @@
-.card-style {
-  margin-top: 50px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 800px;
-}
-
-.latest-exam-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-self: center;
-  align-self: center;
-  place-self: center;
+.place-button {
+  text-align: center;
+  margin-top: 20px;
+  padding-bottom: 30px;
 }
