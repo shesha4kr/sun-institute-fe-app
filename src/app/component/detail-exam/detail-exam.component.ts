@@ -9,7 +9,7 @@ export class DetailExamComponent implements OnInit {
   @Input() latestExamDetails: any;
   @Input() title = 'Default Title';
   totalPercentage = 100;
-  radius = 90;
+  percentageForCircleChart = 110;
 
   constructor() {}
 
@@ -19,5 +19,10 @@ export class DetailExamComponent implements OnInit {
         this.latestExamDetails.quantMarks +
         this.latestExamDetails.gkMarks) /
       300;
+
+    this.percentageForCircleChart =
+      (this.latestExamDetails.totalStudBehind /
+        this.latestExamDetails.totalStudents) *
+      100;
   }
 }
