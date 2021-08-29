@@ -17,7 +17,6 @@ export class StudentLoginFormComponent implements OnInit {
   ) {}
 
   //Member Variables
-  authFailed = false;
   authDetails$: any;
 
   studLoginForm = new FormGroup({
