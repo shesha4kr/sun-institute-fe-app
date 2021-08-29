@@ -23,7 +23,6 @@ export class AdminLoginFormComponent implements OnInit {
 
     if (adminId === 'admin' && password === 'admin') {
       localStorage.setItem('userType', 'admin');
-      localStorage.setItem('isLoggedIn', 'yes');
       this.router.navigate(['/admin']);
     } else {
       this.authFailed = true;

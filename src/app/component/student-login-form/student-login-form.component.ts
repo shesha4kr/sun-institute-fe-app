@@ -12,11 +12,13 @@ import { AuthStudentService } from 'src/app/services/auth-student.service';
 export class StudentLoginFormComponent implements OnInit {
   constructor(
     private _snackBar: MatSnackBar,
-    private authStudentService: AuthStudentService
+    private authStudentService: AuthStudentService,
+    private router: Router
   ) {}
 
   //Member Variables
   authFailed = false;
+  authDetails$: any;
 
   studLoginForm = new FormGroup({
     userName: new FormControl('', Validators.required),
@@ -26,15 +28,47 @@ export class StudentLoginFormComponent implements OnInit {
   loginStudent() {
     const { userName, password } = this.studLoginForm.value;
 
-    this.authStudentService.authenticateStudent(userName, password);
+    this.authStudentService.authenticateStudent(userName, password).subscribe(
+      (response) => {
+        this.authDetails$ = response;
+        this.handleResponse();
+      },
+      (error) => {
+        this.openSnackBar('Something Went Wrong!');
+      }
+    );
+  }
 
-    setTimeout(() => {
-      this.authFailed = localStorage.length > 0 ? false : true;
+  handleResponse() {
+    console.log('DETAILS:' + this.authDetails$);
+    if (this.authDetails$.valid) {
+      //Info needed to restrict user from navigating in application without login
+      localStorage.setItem('userType', 'student');
 
-      // Open snack bar if authFailed is true
-      this.authFailed &&
-        this.openSnackBar('Login Failed! Incorrect Credentials');
-    }, 1000);
+      //Extra Info from BE
+      localStorage.setItem('totalStuds', this.authDetails$?.totalStudents);
+      localStorage.setItem(
+        'totalStudsBehind',
+        this.authDetails$?.totalStudentsBehind
+      );
+
+      //Latest Mock Exam Details
+      localStorage.setItem(
+        'latestExamDetails',
+        JSON.stringify(this.authDetails$?.latestTestDetails)
+      );
+
+      //Student Details
+      localStorage.setItem(
+        'studDetails',
+        JSON.stringify(this.authDetails$?.studDetails)
+      );
+
+      //Load and Navigate to Student Module
+      this.router.navigate(['/student']);
+    } else {
+      this.openSnackBar('Login Failed! Incorrect Credentials');
+    }
   }
 
   openSnackBar(message: string) {
