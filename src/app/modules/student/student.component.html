@@ -5,7 +5,7 @@
 </mat-card>
 
 <div *ngFor="let exam of examsToDisplay">
-  <detail-exam [latestExamDetails]="exam"> </detail-exam>
+  <detail-exam [examDetails]="exam"> </detail-exam>
 </div>
 
 <div *ngIf="!viewAll">

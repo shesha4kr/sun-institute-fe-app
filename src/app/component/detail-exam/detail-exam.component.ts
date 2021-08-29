@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./detail-exam.component.css'],
 })
 export class DetailExamComponent implements OnInit {
-  @Input() latestExamDetails: any;
+  @Input() examDetails: any;
   totalPercentage = 100;
   percentageForCircleChart = 110;
 
@@ -14,14 +14,12 @@ export class DetailExamComponent implements OnInit {
 
   ngOnInit(): void {
     this.totalPercentage =
-      (this.latestExamDetails.logicalMarks +
-        this.latestExamDetails.quantMarks +
-        this.latestExamDetails.gkMarks) /
+      (this.examDetails.logicalMarks +
+        this.examDetails.quantMarks +
+        this.examDetails.gkMarks) /
       300;
 
     this.percentageForCircleChart =
-      (this.latestExamDetails.totalStudBehind /
-        this.latestExamDetails.totalStudents) *
-      100;
+      (this.examDetails.totalStudBehind / this.examDetails.totalStudents) * 100;
   }
 }
