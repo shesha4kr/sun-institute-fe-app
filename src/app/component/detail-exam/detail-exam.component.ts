@@ -6,7 +6,6 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./detail-exam.component.css'],
 })
 export class DetailExamComponent implements OnInit {
-  @Input() studDetails: any;
   @Input() latestExamDetails: any;
   @Input() title = 'Default Title';
   totalPercentage = 100;

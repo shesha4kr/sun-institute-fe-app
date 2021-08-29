@@ -1,8 +1,4 @@
 <mat-card class="card-style" style="text-align: center">
-  <mat-card-title style="text-align: center">
-    {{ title }}
-  </mat-card-title>
-
   <mat-card-content>
     <div class="latest-exam-container">
       <div class="exam details">
@@ -34,14 +30,5 @@
         <circle-chart [radius]="radius"></circle-chart>
       </div>
     </div>
-    <button
-      mat-raised-button
-      color="primary"
-      style="justify-self: center"
-      [routerLink] = "['/student', 'exams']"
-      [queryParams] = "{userName: studDetails.userName}"
-    >
-      View All Mock Tests
-    </button>
   </mat-card-content>
 </mat-card>

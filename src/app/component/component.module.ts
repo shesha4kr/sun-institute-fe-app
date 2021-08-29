@@ -21,7 +21,6 @@ import { AdminLoginFormComponent } from './admin-login-form/admin-login-form.com
 import { StudentLoginFormComponent } from './student-login-form/student-login-form.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SummaryExamComponent } from './summary-exam/summary-exam.component';
 import { RouterModule } from '@angular/router';
 import { HeaderToolbarComponent } from './header-toolbar/header-toolbar.component';
 
@@ -32,8 +31,8 @@ import { HeaderToolbarComponent } from './header-toolbar/header-toolbar.componen
     AdminLoginFormComponent,
     StudentLoginFormComponent,
     LoginPageComponent,
-    SummaryExamComponent,
     HeaderToolbarComponent,
+    DetailExamComponent,
   ],
   imports: [
     CommonModule,
@@ -59,7 +58,7 @@ import { HeaderToolbarComponent } from './header-toolbar/header-toolbar.componen
     AdminLoginFormComponent,
     StudentLoginFormComponent,
     LoginPageComponent,
-    SummaryExamComponent,
+    DetailExamComponent,
     HeaderToolbarComponent,
   ],
 })

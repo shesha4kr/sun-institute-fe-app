@@ -1,7 +1,29 @@
-<detail-exam
-  [studDetails]="studDetails"
-  [latestExamDetails]="latestExamDetails"
-  title="Welcome! {{ studDetails.firstName }} to the Student Portal"
->
-</detail-exam>
+<mat-card style="text-align: center">
+  <mat-card-title>
+    Welcome! {{ studDetails.firstName }} to the Student Portal
+  </mat-card-title>
+</mat-card>
 
+<div *ngFor="let exam of allExamDetails$">
+  <detail-exam
+    [latestExamDetails]="exam"
+    title="Welcome! {{ studDetails.firstName }} to the Student Portal"
+  >
+  </detail-exam>
+</div>
+
+<div *ngIf="!viewAll">
+  <div class="place-button">
+    <button mat-raised-button color="primary" (click)="handleClick()">
+      View All Mock Tests
+    </button>
+  </div>
+</div>
+
+<div *ngIf="viewAll">
+  <div class="place-button">
+    <button mat-raised-button color="primary" (click)="handleClick()">
+      View Less
+    </button>
+  </div>
+</div>
