@@ -17,4 +17,9 @@ export class FetchExamsByUsernameService {
     const url = `http://localhost:8080/student/exams/${studId}`;
     return this.httpClient.get(url);
   }
+
+  fetchStudentProfile(studId = 0): Observable<object> {
+    const url = `http://localhost:8080/student/profile/${studId}`;
+    return this.httpClient.get(url);
+  }
 }
