@@ -31,7 +31,7 @@ export class AdminLoginFormComponent implements OnInit {
   }
 
   openSnackBar(message: string) {
-    this._snackBar.open(message, 'Retry');
+    this._snackBar.open(message, 'Retry', { duration: 4000 });
   }
 
   ngOnInit(): void {}
