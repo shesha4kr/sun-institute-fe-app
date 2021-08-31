@@ -22,4 +22,9 @@ export class FetchExamsByUsernameService {
     const url = `http://localhost:8080/student/profile/${studId}`;
     return this.httpClient.get(url);
   }
+
+  updateStudentPofile(studId = 0, newProfile: any): Observable<object> {
+    const url = `http://localhost:8080/student/profile/${studId}`;
+    return this.httpClient.put(url, newProfile);
+  }
 }

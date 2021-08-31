@@ -15,14 +15,16 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { CircleChartComponent } from './circle-chart/circle-chart.component';
 import { AdminLoginFormComponent } from './admin-login-form/admin-login-form.component';
 import { StudentLoginFormComponent } from './student-login-form/student-login-form.component';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HeaderToolbarComponent } from './header-toolbar/header-toolbar.component';
+import { DialogModalComponent } from './dialog-modal/dialog-modal.component';
 
 @NgModule({
   declarations: [
@@ -33,9 +35,11 @@ import { HeaderToolbarComponent } from './header-toolbar/header-toolbar.componen
     LoginPageComponent,
     HeaderToolbarComponent,
     DetailExamComponent,
+    DialogModalComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
     NgCircleProgressModule.forRoot({}),
     MatListModule,
     MatButtonModule,
@@ -51,6 +55,7 @@ import { HeaderToolbarComponent } from './header-toolbar/header-toolbar.componen
     MatIconModule,
     MatMenuModule,
     MatToolbarModule,
+    MatDialogModule,
   ],
   exports: [
     DetailExamComponent,

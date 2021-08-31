@@ -2,60 +2,85 @@
   <mat-card-title style="text-align: center">Edit Your Profile</mat-card-title>
 </mat-card>
 
-<mat-card class="card-style" style="text-align: center" *ngIf="!isStudProfileFetched">
-  <mat-card-title style="text-align: center">Oops! Something Went Wrong...</mat-card-title>
+<mat-card
+  class="card-style"
+  style="text-align: center"
+  *ngIf="!isStudProfileFetched"
+>
+  <mat-card-title style="text-align: center; margin: 100px 0px 10px 0px"
+    >Oops! Something Went Wrong...</mat-card-title
+  >
 </mat-card>
 
-<mat-card class="card-style" style="text-align: left" *ngIf="isStudProfileFetched">
-  <form [formGroup]="form">
-    <mat-form-field appearance="outline">
-      <mat-label>First Name</mat-label>
-      <input matInput formControlName="firstName" />
-    </mat-form-field>
+<mat-card class="card-style" *ngIf="isStudProfileFetched">
+  <mat-card-content>
+    <form [formGroup]="form">
+      <div class="table">
+        <label>First Name : </label>
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" />
+        </mat-form-field>
 
-    <br />
+        <label>Last Name : </label>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Last Name</mat-label>
-      <input matInput formControlName="lastName" />
-    </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" />
+        </mat-form-field>
 
-    <br />
+        <label>Date Of Birth : </label>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Choose DOB</mat-label>
-      <input
-        matInput
-        [matDatepicker]="picker"
-        formControlName="dob"
-        placeholder="MM/DD/YYYY"
-        (dateChange)="handleChangeInDOB()"
-      />
-      <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
-      <mat-datepicker #picker disabled="false"></mat-datepicker>
-    </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Choose DOB</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="dob"
+            placeholder="MM/DD/YYYY"
+            (dateChange)="handleChangeInDOB()"
+          />
+          <mat-datepicker-toggle matSuffix [for]="picker">
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker disabled="false"></mat-datepicker>
+        </mat-form-field>
 
-    <br />
+        <label>User Name : </label>
 
-    <mat-form-field appearance="outline">
-      <mat-label>User Name</mat-label>
-      <input matInput formControlName="userName" (keyup)="handleKeyUp()" />
-    </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>User Name</mat-label>
+          <input matInput formControlName="userName" (keyup)="handleKeyUp()" />
+        </mat-form-field>
+      </div>
 
-    <div *ngIf="form.get('userName')?.invalid" class="error">
-     user name must start/end with apbhabet, must contain min. 5 characters, can contain (-_.)
-    </div>
+      <div *ngIf="form.get('userName')?.invalid" class="error">
+        User name must start/end with apbhabet, must contain min. 5 characters,
+        can contain (-_.)
+      </div>
 
-    <div *ngIf="isExistingUserName" class="error">
-      {{form.get('userName')?.value}} user name is not available
-    </div>
+      <div *ngIf="isExistingUserName" class="error">
+        This user name is not available.
+      </div>
 
-    <br />
+      <br />
 
-    <div *ngIf="(form.get('userName')?.dirty && !isSameUserName) || (form.get('dob')?.dirty && !isSameDOB)">
-      <button mat-raised-button color="primary" [disabled]="!form.valid || isExistingUserName">
-        Save Changes
-      </button>
-    </div>
-  </form>
+      <div
+        *ngIf="
+          (form.get('userName')?.dirty && !isSameUserName) ||
+          (form.get('dob')?.dirty && !isSameDOB)
+        "
+      >
+        <div style="text-align: center">
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="!form.valid || isExistingUserName"
+            (click)="openDialog()"
+          >
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
 </mat-card>
