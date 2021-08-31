@@ -20,7 +20,7 @@ export class StudentComponent implements OnInit {
     private fetchExamsService: FetchExamsByUsernameService
   ) {
     //Inform Toolbar that its Student Module
-    this._sharedService.emitChange('Student');
+    this._sharedService.emitChange('student');
   }
 
   ngOnInit(): void {

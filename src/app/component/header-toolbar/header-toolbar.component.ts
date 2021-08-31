@@ -11,7 +11,7 @@ export class HeaderToolbarComponent {
 
   @Input()
   set currentModule(value: string) {
-    this._currentModule = value;
+    this._currentModule = localStorage.getItem('userType') || value;
     this.getMenuItem();
   }
 
@@ -33,20 +33,15 @@ export class HeaderToolbarComponent {
   }
 
   getMenuItem() {
-    if (this.currentModule === 'Student') {
+    if (this.currentModule === 'student') {
       this.getMenuItemsForStudents();
-    } else if (this.currentModule === 'Admin') {
+    } else if (this.currentModule === 'admin') {
       this.getMenuItemsForAdmin();
     }
   }
 
   getMenuItemsForStudents() {
-    this.menuItems = [
-      'View Profile',
-      'Edit Profile',
-      'Change Credentials',
-      'Logout',
-    ];
+    this.menuItems = ['View Profile', 'Change Password', 'Logout'];
   }
 
   getMenuItemsForAdmin() {
@@ -57,10 +52,10 @@ export class HeaderToolbarComponent {
     if (menuItem === 'Logout') {
       localStorage.clear();
       this.router.navigate(['/']);
-    } else if (menuItem === 'Edit Profile') {
-      console.log('Edit Profile Clicked');
-
+    } else if (menuItem === 'View Profile') {
       this.router.navigate(['/student', 'profile']);
+    } else if (menuItem === 'Change Password') {
+      this.router.navigate(['/student', 'update', 'password']);
     }
   }
 
