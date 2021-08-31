@@ -62,14 +62,9 @@ export class EditProfilePageComponent implements OnInit {
 
   //It initialises the form
   initiateForm(): FormGroup {
-    console.log('MONTH:' + this.studDetails$?.birthMonth);
-    console.log('DAY:' + this.studDetails$?.birthDate);
-
     this.date.setMonth(this.studDetails$?.birthMonth - 1);
     this.date.setDate(this.studDetails$?.birthDate);
     this.date.setFullYear(this.studDetails$?.birthYear);
-    console.log('MONTH DATE:' + this.date.getMonth());
-    console.log('DATE DATE:' + this.date.getDate());
     const form = new FormGroup({
       firstName: new FormControl({
         value: this.studDetails$?.firstName,

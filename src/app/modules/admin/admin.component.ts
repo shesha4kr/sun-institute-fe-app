@@ -8,7 +8,7 @@ import { SharedService } from 'src/app/services/shared.service';
 })
 export class AdminComponent implements OnInit {
   constructor(private _sharedService: SharedService) {
-    this._sharedService.emitChange('Admin');
+    this._sharedService.emitChange('admin');
   }
 
   ngOnInit(): void {}
