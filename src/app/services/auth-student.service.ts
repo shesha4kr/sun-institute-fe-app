@@ -10,9 +10,6 @@ import { Observable } from 'rxjs';
 export class AuthStudentService {
   constructor(private httpClient: HttpClient, private router: Router) {}
 
-  //Member Variables
-  authDetails: any;
-
   authenticateStudent(userName: string, password: string): Observable<object> {
     return this.httpClient.post('http://localhost:8080/login/student', 
     {
