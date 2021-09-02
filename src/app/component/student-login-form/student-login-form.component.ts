@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AuthStudentService } from 'src/app/services/auth-student.service';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'student-login-form',
@@ -12,7 +12,7 @@ import { AuthStudentService } from 'src/app/services/auth-student.service';
 export class StudentLoginFormComponent implements OnInit {
   constructor(
     private _snackBar: MatSnackBar,
-    private authStudentService: AuthStudentService,
+    private studentService: StudentService,
     private router: Router
   ) {}
 
@@ -29,7 +29,7 @@ export class StudentLoginFormComponent implements OnInit {
   loginStudent() {
     const { userName, password } = this.studLoginForm.value;
 
-    this.authStudentService.authenticateStudent(userName, password).subscribe(
+    this.studentService.authenticateStudent(userName, password).subscribe(
       (response) => {
         this.authDetails$ = response;
         this.handleResponse();

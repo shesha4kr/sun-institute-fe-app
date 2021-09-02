@@ -1,5 +1,11 @@
-<div [ngClass]="isDarkMode === 'true' ? 'apply-dark-theme' : 'light-theme'">
-  <header-toolbar [currentModule]="currentModule" (isDarkMode)="getDarkMode($event)"></header-toolbar>
+<div
+  class="mat-app-background"
+  [ngClass]="isDarkMode === 'true' ? 'apply-dark-theme' : 'light-theme'"
+>
+  <header-toolbar
+    [currentModule]="currentModule"
+    (isDarkMode)="getDarkMode($event)"
+  ></header-toolbar>
 
   <router-outlet></router-outlet>
 </div>

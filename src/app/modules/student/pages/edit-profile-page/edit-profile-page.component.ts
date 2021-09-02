@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { DialogModalComponent } from 'src/app/component/dialog-modal/dialog-modal.component';
-import { FetchExamsByUsernameService } from 'src/app/services/fetch-exams-by-username.service';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'edit-profile-page',
@@ -31,7 +31,7 @@ export class EditProfilePageComponent implements OnInit {
   newBirthYear = 0;
 
   constructor(
-    private fetchStudProfile: FetchExamsByUsernameService,
+    private studentService: StudentService,
     private router: Router,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar
@@ -114,7 +114,7 @@ export class EditProfilePageComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       //If user enters correct password
       if (result.value === this.studDetails$?.password) {
-        this.fetchStudProfile
+        this.studentService
           .updateStudentPofile(this.studId, {
             userName: this.newUserName || null,
             birthDate: this.newBirthDate || null,
@@ -128,32 +128,34 @@ export class EditProfilePageComponent implements OnInit {
               console.log('NOW WILL GET NEW PROFILE');
 
               if (res?.message === 'success') {
-                this.fetchStudProfile
-                  .fetchStudentProfile(this.studId)
-                  .subscribe(
-                    (response) => {
-                      console.log('FETCHED PROFILE DETAILS, WILL UPDATE FORM');
-                      this.studDetails$ = response;
-                      this.isStudProfileFetched = true;
-                      this.form = this.initiateForm();
-                      console.log('FORM UPDATED');
-                      this.openSnackBar('Username/DOB updated Successfully!');
-                      this.router.navigate(['']);
-                    },
-                    (error) => {
-                      console.log('ERRROR WHILE FETCHING NEW PROFILE');
-                      console.log(error);
-                      this.isStudProfileFetched = false;
-                      this.openSnackBar('Something went wrong!');
-                    }
-                  );
+                this.studentService.fetchStudentProfile(this.studId).subscribe(
+                  (response) => {
+                    console.log('FETCHED PROFILE DETAILS, WILL UPDATE FORM');
+                    this.studDetails$ = response;
+                    this.isStudProfileFetched = true;
+                    this.form = this.initiateForm();
+                    console.log('FORM UPDATED');
+                    this.openSnackBar('Username/DOB updated Successfully!');
+                    this.router.navigate(['']);
+                  },
+                  (error) => {
+                    console.log('ERRROR WHILE FETCHING NEW PROFILE');
+                    console.log(error);
+                    this.isStudProfileFetched = false;
+                    this.openSnackBar('Something went wrong!');
+                  }
+                );
               } else {
-                console.error('Message is coming as Failed. Some Exception Must Have Thrown in BE');
+                console.error(
+                  'Message is coming as Failed. Some Exception Must Have Thrown in BE'
+                );
                 this.openSnackBar('Something went wrong!');
               }
             },
             (error) => {
-              console.error('ERRROR CAME IN UPDATING NEW PROFILE (PUT):' + error);
+              console.error(
+                'ERRROR CAME IN UPDATING NEW PROFILE (PUT):' + error
+              );
               this.openSnackBar('Something went wrong!');
             }
           );
@@ -164,7 +166,7 @@ export class EditProfilePageComponent implements OnInit {
   }
 
   fetchStudentProfileDetails(): void {
-    this.fetchStudProfile.fetchStudentProfile(this.studId).subscribe(
+    this.studentService.fetchStudentProfile(this.studId).subscribe(
       (response) => {
         this.studDetails$ = response;
         this.isStudProfileFetched = true;
