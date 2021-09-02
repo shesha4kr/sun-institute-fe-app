@@ -5,8 +5,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class FetchExamsByUsernameService {
+export class StudentService {
   constructor(private httpClient: HttpClient) {}
+
+  authenticateStudent(userName: string, password: string): Observable<object> {
+    return this.httpClient.post('http://localhost:8080/login/student', { userName, password });
+  }
 
   fetchLatestExamsByUserId(studId = 0): Observable<object> {
     const url = `http://localhost:8080/student/exam/${studId}`;
@@ -28,7 +32,7 @@ export class FetchExamsByUsernameService {
     return this.httpClient.put(url, newProfile);
   }
 
-  validatePassword(studId = 0, password = '', newPassword = ''): Observable<object> {
+  validatePassword( studId = 0, password = '', newPassword = ''): Observable<object> {
     const url = `http://localhost:8080/student/${studId}`;
     return this.httpClient.put(url, { password, newPassword });
   }

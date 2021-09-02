@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FetchExamsByUsernameService } from 'src/app/services/fetch-exams-by-username.service';
+import { StudentService } from 'src/app/services/student.service';
 import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class StudentComponent implements OnInit {
 
   constructor(
     private _sharedService: SharedService,
-    private fetchExamsService: FetchExamsByUsernameService
+    private studentService: StudentService
   ) {
     //Inform Toolbar that its Student Module
     this._sharedService.emitChange('student');
@@ -29,7 +29,7 @@ export class StudentComponent implements OnInit {
     this.studId = parseInt(localStorage.getItem('userId')!);
 
     //Fetch Latest Exam Details
-    this.fetchExamsService.fetchLatestExamsByUserId(this.studId).subscribe(
+    this.studentService.fetchLatestExamsByUserId(this.studId).subscribe(
       (response) => {
         this.latestExamDetails$ = response;
         this.examsToDisplay = this.latestExamDetails$;
@@ -43,7 +43,7 @@ export class StudentComponent implements OnInit {
 
     //Fetch All Exam Details if value of this.allExamDetails$ is NULL
     this.allExamDetails$ ||
-      this.fetchExamsService.fetchAllExams(this.studId).subscribe(
+      this.studentService.fetchAllExams(this.studId).subscribe(
         (response) => {
           this.allExamDetails$ = response;
           this.examsToDisplay = this.allExamDetails$;

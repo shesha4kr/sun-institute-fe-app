@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { FetchExamsByUsernameService } from 'src/app/services/fetch-exams-by-username.service';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'change-password',
@@ -24,7 +24,7 @@ export class ChangePasswordComponent implements OnInit {
   response$: any;
 
   constructor(
-    private studentService: FetchExamsByUsernameService,
+    private studentService: StudentService,
     private router: Router,
     private _snackBar: MatSnackBar
   ) {}
