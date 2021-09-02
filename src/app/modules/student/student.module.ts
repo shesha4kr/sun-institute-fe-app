@@ -11,7 +11,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
 import { StudentRoutingModule } from './student-routing.module';
@@ -19,9 +18,14 @@ import { StudentComponent } from './student.component';
 import { ComponentModule } from 'src/app/component/component.module';
 import { EditProfilePageComponent } from './pages/edit-profile-page/edit-profile-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 @NgModule({
-  declarations: [StudentComponent, EditProfilePageComponent],
+  declarations: [
+    StudentComponent,
+    EditProfilePageComponent,
+    ChangePasswordComponent,
+  ],
   imports: [
     CommonModule,
     ComponentModule,

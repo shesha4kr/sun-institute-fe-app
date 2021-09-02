@@ -27,4 +27,9 @@ export class FetchExamsByUsernameService {
     const url = `http://localhost:8080/student/profile/${studId}`;
     return this.httpClient.put(url, newProfile);
   }
+
+  validatePassword(studId = 0, password = '', newPassword = ''): Observable<object> {
+    const url = `http://localhost:8080/student/${studId}`;
+    return this.httpClient.put(url, { password, newPassword });
+  }
 }

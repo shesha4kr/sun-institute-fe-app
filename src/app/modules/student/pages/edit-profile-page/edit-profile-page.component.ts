@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { DialogModalComponent } from 'src/app/component/dialog-modal/dialog-modal.component';
 import { FetchExamsByUsernameService } from 'src/app/services/fetch-exams-by-username.service';
 
@@ -31,6 +32,7 @@ export class EditProfilePageComponent implements OnInit {
 
   constructor(
     private fetchStudProfile: FetchExamsByUsernameService,
+    private router: Router,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar
   ) {
@@ -136,6 +138,7 @@ export class EditProfilePageComponent implements OnInit {
                       this.form = this.initiateForm();
                       console.log('FORM UPDATED');
                       this.openSnackBar('Username/DOB updated Successfully!');
+                      this.router.navigate(['']);
                     },
                     (error) => {
                       console.log('ERRROR WHILE FETCHING NEW PROFILE');
@@ -145,14 +148,12 @@ export class EditProfilePageComponent implements OnInit {
                     }
                   );
               } else {
-                console.log(
-                  'Message is coming as Failed. Some Exception Must Have Thrown in BE'
-                );
+                console.error('Message is coming as Failed. Some Exception Must Have Thrown in BE');
                 this.openSnackBar('Something went wrong!');
               }
             },
             (error) => {
-              console.log('ERRROR CAME IN UPDATING NEW PROFILE (PUT):' + error);
+              console.error('ERRROR CAME IN UPDATING NEW PROFILE (PUT):' + error);
               this.openSnackBar('Something went wrong!');
             }
           );
